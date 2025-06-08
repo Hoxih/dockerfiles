@@ -9,7 +9,7 @@ if ($conexion->connect_error) {
 $usuario = $_POST['usuario'];
 $contrasena = $_POST['contrasena'];
 
-$stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ?");
+$stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?");
 $stmt->bind_param("ss", $usuario, $contrasena);
 $stmt->execute();
 $resultado = $stmt->get_result();

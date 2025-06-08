@@ -9,16 +9,22 @@ if (!isset($_SESSION['usuario'])) {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Inicio - Inventario IPVG</title>
+  <title>Panel - Inventario IPVG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { background-color: #f8f9fa; }
+    body {
+      margin: 0;
+      background-color: #f8f9fa;
+    }
     .sidebar {
       height: 100vh;
       background-color: #0a3d62;
       color: white;
       padding: 1rem;
+    }
+    .sidebar h5 {
+      margin-top: 1rem;
     }
     .sidebar a {
       color: white;
@@ -29,12 +35,14 @@ if (!isset($_SESSION['usuario'])) {
     .sidebar a:hover {
       text-decoration: underline;
     }
+    .content {
+      padding: 2rem;
+    }
     .logo {
       max-width: 100%;
       height: 60px;
       margin-bottom: 1rem;
     }
-    .content { padding: 2rem; }
   </style>
 </head>
 <body>
@@ -47,19 +55,16 @@ if (!isset($_SESSION['usuario'])) {
         <hr>
         <a href="index.php">Inicio</a>
         <a href="buscar.php">Buscar activos</a>
-	<?php if ($_SESSION['rol'] === 'admin' || $_SESSION['rol'] === 'soporte'): ?>
-	<a href="registrar.php">Agregar activos</a>
-	<?php endif; ?>
-	<?php if ($_SESSION['rol'] === 'admin'): ?>
+        <?php if ($_SESSION['rol'] === 'admin'): ?>
         <a href="admin_usuarios.php">Agregar usuarios</a>
         <a href="admin_recuperaciones.php">Solicitudes</a>
         <?php endif; ?>
         <a href="logout.php" class="text-danger mt-3 d-block">Cerrar sesión</a>
       </div>
       <div class="col-md-9 content">
-        <h2>Bienvenido al sistema de inventario de activos tecnológicos</h2>
-        <p class="lead">Desde aquí puedes acceder a todas las funciones del sistema.</p>
-        <img src="img/logo_ipvg.png" class="img-fluid mt-4" style="max-height: 150px;">
+        <h2>Panel de Control</h2>
+        <p>Desde este panel puedes acceder a las funciones principales del sistema de inventario.</p>
+        <p>Usa el menú de la izquierda para gestionar activos, usuarios o solicitudes.</p>
       </div>
     </div>
   </div>

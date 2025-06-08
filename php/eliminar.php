@@ -9,7 +9,7 @@ if ($conexion->connect_error) {
 }
 
 $id = intval($_GET['id']);
-$stmt = $conexion->prepare("DELETE FROM activos WHERE id_activos = ?");
+$stmt = $conexion->prepare("DELETE FROM activos WHERE id = ?");
 $stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {

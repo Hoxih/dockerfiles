@@ -4,7 +4,7 @@ if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
 
-$stmt = $conexion->prepare("UPDATE activos SET nombre=?, tipo=?, numero_serie=?, ubicacion=?, fecha_ingreso=?, estado=? WHERE id_activos=?");
+$stmt = $conexion->prepare("UPDATE activos SET nombre=?, tipo=?, numero_serie=?, ubicacion=?, fecha_ingreso=?, estado=? WHERE id=?");
 $stmt->bind_param("ssssssi",
     $_POST['nombre'],
     $_POST['tipo'],

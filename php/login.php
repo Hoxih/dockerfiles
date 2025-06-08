@@ -23,11 +23,11 @@
       padding: 2rem;
       width: 100%;
       max-width: 400px;
-    }
-    .login-box h2 {
       text-align: center;
+    }
+    .login-box img.logo {
+      max-height: 80px;
       margin-bottom: 1.5rem;
-      color: white;
     }
     .form-control {
       background-color: #f8f9fa;
@@ -38,33 +38,28 @@
     .text-small {
       font-size: 0.875rem;
     }
-    .logo {
-      display: block;
-      margin: 0 auto 1rem auto;
-      max-height: 80px;
-    }
   </style>
 </head>
 <body>
   <div class="login-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_Instituto_Profesional_Virginio_G%C3%B3mez.png" class="logo" alt="IPVG">
-    <h2>Acceso Intranet</h2>
-    <form action="validar.php" method="POST">
-      <div class="mb-3">
+    <img src="img/logo_ipvg.png" class="logo" alt="Logo IPVG">
+    <h2>Acceso Inventario</h2>
+    <form action="validar.php" method="POST" class="mt-3">
+      <div class="mb-3 text-start">
         <label for="usuario" class="form-label">Nombre usuario</label>
         <input type="text" name="usuario" id="usuario" class="form-control" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 text-start">
         <label for="contrasena" class="form-label">Contraseña</label>
         <input type="password" name="contrasena" id="contrasena" class="form-control" required>
       </div>
       <button type="submit" class="btn btn-primary">Ingresar</button>
     </form>
     <div class="mt-3 text-center text-small">
-      <a href="recuperar.php">¿Olvidaste tu contraseña?</a>
+      <a href="recuperar.php" class="text-white">¿Olvidaste tu contraseña?</a>
     </div>
     <?php if (isset($_GET['error'])): ?>
-      <div class="alert alert-danger mt-3 text-center">Credenciales incorrectas.</div>
+      <div class="alert alert-danger mt-3">Credenciales incorrectas.</div>
     <?php endif; ?>
   </div>
 </body>

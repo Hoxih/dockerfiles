@@ -1,14 +1,10 @@
-version: '3.8'
-
 services:
   web:
     build: .
-    volumes:
-      - ./php:/var/www/html/
     ports:
       - "80:80"
-    depends_on:
-      - db
+    volumes:
+      - ./php:/var/www/html
 
   db:
     image: mariadb:10.5
@@ -20,9 +16,15 @@ services:
       MYSQL_PASSWORD: ipvg
     ports:
       - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
 
   adminer:
     image: adminer
     restart: always
     ports:
       - "8080:8080"
+
+volumes:
+  mariadb_data:
+

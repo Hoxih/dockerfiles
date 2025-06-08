@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $conexion = new mysqli('db', 'ipvg', 'ipvg', 'inventario');
     $usuario = $_POST['usuario'];
 
-    $stmt = $conexion->prepare("INSERT INTO solicitudes_recuperacion (usuario_solicitado) VALUES (?)");
+    $stmt = $conexion->prepare("INSERT INTO solicitudes_recuperacion (usuario) VALUES (?)");
     $stmt->bind_param("s", $usuario);
     $stmt->execute();
     $stmt->close();
@@ -36,6 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       padding: 2rem;
       width: 100%;
       max-width: 400px;
+      text-align: center;
+    }
+    .login-box img.logo {
+      max-height: 80px;
+      margin-bottom: 1.5rem;
     }
     .form-control {
       background-color: #f8f9fa;
@@ -43,30 +48,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     .btn-primary {
       width: 100%;
     }
-    .logo {
-      display: block;
-      margin: 0 auto 1rem auto;
-      max-height: 80px;
+    .text-small {
+      font-size: 0.875rem;
     }
   </style>
 </head>
 <body>
   <div class="login-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_Instituto_Profesional_Virginio_G%C3%B3mez.png" class="logo" alt="IPVG">
+    <img src="img/logo_ipvg.png" class="logo" alt="Logo IPVG">
     <h2>¿Olvidaste tu contraseña?</h2>
     <?php if (isset($mensaje)): ?>
-      <div class="alert alert-success text-white text-center"><?= $mensaje ?></div>
+      <div class="alert alert-success text-white mt-3"><?= $mensaje ?></div>
     <?php endif; ?>
-    <form method="POST">
-      <div class="mb-3">
-        <label for="usuario" class="form-label">Ingresa tu nombre de usuario</label>
+    <form method="POST" class="mt-3">
+      <div class="mb-3 text-start">
+        <label for="usuario" class="form-label">Nombre de usuario</label>
         <input type="text" name="usuario" id="usuario" class="form-control" required>
       </div>
       <button type="submit" class="btn btn-primary">Enviar solicitud</button>
     </form>
     <div class="mt-3 text-center text-small">
-      <a href="login.php">← Volver al inicio de sesión</a>
+      <a href="login.php" class="text-white">← Volver al inicio</a>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const msg = document.querySelector('.alert-success');
+      const btn = document.querySelector('button[type="submit"]');
+      if (msg && btn) {
+        btn.disabled = true;
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-secondary");
+        btn.innerText = "✔ Solicitud enviada";
+      }
+    });
+  </script>
 </body>
 </html>
